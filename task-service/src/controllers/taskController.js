@@ -1,15 +1,10 @@
 const taskService = require("../services/taskService");
 
 const createTask = async (req, res) => {
-  const { userId, task } = req.body;
   try {
-    const userExists = await taskService.checkUserExists(userId);
-    if (userExists) {
-      await taskService.createTask(userId, task);
-      res.send("Task created");
-    } else {
-      res.status(404).send("User not found");
-    }
+    const { userId, task } = req.body;
+    await taskService.createTask(userId, task);
+    res.status(201).json({ message: "Task created successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

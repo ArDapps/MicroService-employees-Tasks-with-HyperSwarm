@@ -1,30 +1,22 @@
 const express = require("express");
-const employeeRoutes = require("./src/routes/employeeRoutes");
-const { sequelize } = require("./src/config/database");
+const DHT = require("hyperdht");
 const RPC = require("@hyperswarm/rpc");
+const { sequelize } = require("./src/config/database");
+const employeeRoutes = require("./src/routes/employeeRoutes");
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
-const rpc = new RPC();
-const server = rpc.createServer();
-server.listen();
-
-server.respond("checkUser", async (req) => {
-  const userId = req.toString();
-  const [user] = await sequelize.query(
-    'SELECT * FROM "Employees" WHERE id = $1',
-    { replacements: [userId], type: sequelize.QueryTypes.SELECT }
-  );
-  return Boolean(user);
-});
+// إعداد HyperDHT
+const dht = new DHT();
+const rpc = new RPC({ dht });
 
 app.use(express.json());
 app.use("/employees", employeeRoutes);
 
-app.listen(port, async () => {
+app.listen(PORT, async () => {
   await sequelize.sync();
-  console.log(`Employee Service listening at http://localhost:${port}`);
+  console.log(`Employee Service is running on port ${PORT}`);
 });
 
-module.exports = { sequelize, rpc, server };
+module.exports = { rpc };
