@@ -1,0 +1,16 @@
+version: "3.1"
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: tasksdb
+    ports:
+      - "5433:5432" # Use a different external port to avoid conflict
+  task-service:
+    build: .
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres

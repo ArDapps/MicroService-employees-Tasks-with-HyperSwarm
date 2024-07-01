@@ -1,0 +1,24 @@
+{
+  "name": "task-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hyperswarm/rpc": "^3.3.2",
+    "express": "^4.19.2",
+    "hp-rpc-cli": "^0.0.5",
+    "hyperbee": "^2.19.7",
+    "hypercore": "^10.37.8",
+    "hyperdht": "^6.15.1",
+    "pg": "^8.12.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.3"
+  },
+  "description": ""
+}
