@@ -1,6 +1,6 @@
 const Employee = require("../models/employeeModel");
 const { rpc } = require("../../server");
-const taskServerPublicKey = "PUBLIC_KEY_OF_TASK_SERVER"; // Replace with actual public key
+const taskServerPublicKey = "PUBLIC_KEY_OF_TASK_SERVER"; // Replace with the actual public key
 
 const getAllEmployees = async () => {
   return await Employee.findAll();

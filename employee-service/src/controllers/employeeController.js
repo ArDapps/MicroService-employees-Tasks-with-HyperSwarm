@@ -19,7 +19,6 @@ const clearEmployees = async (req, res) => {
 };
 
 const createEmployee = async (req, res) => {
-  console.log(req, "createEmployee");
   try {
     const { name, position } = req.body;
     const newEmployee = await employeeService.createEmployee(name, position);

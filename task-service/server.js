@@ -7,7 +7,6 @@ const app = express();
 const port = 3001;
 
 const rpc = new RPC();
-
 const server = rpc.createServer();
 server.listen();
 
@@ -26,4 +25,4 @@ app.listen(port, async () => {
   console.log(`Task Service listening at http://localhost:${port}`);
 });
 
-module.exports = { sequelize, rpc };
+module.exports = { sequelize, rpc, server };
